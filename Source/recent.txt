@@ -1,0 +1,5 @@
+Test2
+C:/Users/Joshua/Documents/build-Project-Desktop_Qt_5_11_2_MinGW_32bit-Debug/.qmake.stash
+C:/Users/Joshua/Documents/build-Project-Desktop_Qt_5_11_2_MinGW_32bit-Debug/ui_mainwindow.h
+Test3
+Test1

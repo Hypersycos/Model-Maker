@@ -1,0 +1,123 @@
+World{
+World
+true
+0
+(1000, 1000)
+1
+0
+Model{
+Model
+(0, 0)
+0
+(1, 1)
+1
+(0, 0)
+(0, 0)
+0
+0
+0
+0
+0
+true
+(0, 0)
+Polygon{
+Polygon
+(0, 0)
+0
+Point{
+Vertex1
+(-500, 0)
+}
+Point{
+Vertex2
+(500, 0)
+}
+}
+SubModel{
+SubModel
+(0, 10)
+(1, 1)
+0
+(0, 0)
+(0, 0)
+0
+0
+0
+0
+false
+(0, 0)
+Polygon{
+Polygon
+(0, 0)
+0
+Point{
+Vertex1
+(-10, 10)
+}
+Point{
+Vertex2
+(10, 10)
+}
+Point{
+Vertex3
+(10, -10)
+}
+Point{
+Vertex4
+(-10, -10)
+}
+}
+}
+}
+}
+Display{
+Display
+(1, 1)
+0
+(0, 0)
+true
+Slider{
+Slider
+(-300, -50)
+(200, 50)
+0;g
+0
+20
+false
+0.1
+g: 
+}
+Slider{
+Slider
+(100, -50)
+(200, 50)
+0;0;Rotation
+-90
+90
+false
+1
+Angle: 
+}
+Slider{
+Slider
+(-300, 100)
+(200, 50)
+0;0;1;Friction Coefficient
+0
+1
+false
+0.01
+u: 
+}
+Slider{
+Slider
+(100, 100)
+(200, 50)
+0;0;1;Mass
+0
+20
+false
+0.1
+Mass: 
+}
+}

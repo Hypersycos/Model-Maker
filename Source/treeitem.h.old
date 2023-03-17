@@ -1,0 +1,34 @@
+#ifndef TREEITEM_H
+#define TREEITEM_H
+
+#include <QWidget>
+#include <QHBoxLayout>
+#include <QToolButton>
+#include <QPushButton>
+
+class ProjectTree;
+
+class TreeItem : public QWidget
+{
+    Q_OBJECT
+public:
+    TreeItem(ProjectTree *tree, QString position, QString name, QWidget *creator);
+    void addItem(TreeItem *item, QString position = "-1");
+    void removeItem(TreeItem *item, QString position);
+
+public slots:
+    void toggle();
+    void deselect();
+
+private:
+    void selectMe();
+
+    ProjectTree *grandParent;
+    QToolButton *toggleButton;
+    QPushButton *label;
+    QGridLayout *layout;
+    QList<TreeItem *> *children;
+
+};
+
+#endif // TREEITEM_H

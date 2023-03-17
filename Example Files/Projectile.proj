@@ -1,0 +1,83 @@
+World{
+World
+true
+0
+(0, 0)
+1
+11.5683
+Model{
+Model
+(-250, -250)
+0
+(1, 1)
+1
+(0, 0)
+(0, -19.9)
+-20193
+16503
+0
+0
+0
+false
+(0, 0)
+Circle{
+Circle
+25
+(0, 0)
+}
+}
+}
+Display{
+Display
+(1, 1)
+0
+(0, 0)
+false
+Graph{
+Graph
+(-250, 250)
+(500, 500)
+0;Time
+0;0;Position.Y
+
+Time / s
+Velocity / m/s
+0
+20
+-1000
+1000
+}
+Slider{
+Slider
+(-250, -250)
+(500, 50)
+0;0;Velocity.X
+0
+50
+false
+1
+X Velocity: 
+}
+Slider{
+Slider
+(-250, 300)
+(500, 50)
+0;0;Velocity.Y
+0
+50
+false
+1
+Y Velocity: 
+}
+Slider{
+Slider
+(-325, 250)
+(75, 500)
+0;g
+-20
+20
+true
+0.1
+g: 
+}
+}

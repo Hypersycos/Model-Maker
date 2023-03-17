@@ -1,0 +1,117 @@
+#include "treeitem.h"
+#include "projecttree.h"
+#include <QToolButton>
+#include <QPushButton>
+#include <QVariant>
+
+TreeItem::TreeItem(ProjectTree *tree, QString index, QString name, QWidget *creator=nullptr) : QWidget(creator)
+{
+    this->setObjectName(index);
+    grandParent = tree;
+    children = new QList<TreeItem *>();
+    layout = new QGridLayout();
+    layout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+    toggleButton = new QToolButton(this);
+    toggleButton->setArrowType(Qt::ArrowType::RightArrow);
+    toggleButton->setDisabled(true);
+    //newButton->setToolButtonStyle(Qt::ToolButtonStyle::);
+    layout->addWidget(toggleButton);
+    layout->setVerticalSpacing(0);
+    layout->setHorizontalSpacing(0);
+    layout->setContentsMargins(0, 0, 0, 0);
+    connect(toggleButton, &QToolButton::clicked, this, &TreeItem::toggle);
+    label = new QPushButton(this);
+    label->setText(name);
+    label->setFlat(true);
+    label->setCheckable(true);
+    label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    label->setStyleSheet(QString("QPushButton{"
+                                 "Text-align:left;"
+                                 "border-style: none;"
+                                 "padding-left: 5px;"
+                                 "}"
+                                 "QPushButton:hover{"
+                                 "background-color: #AADDFF"
+                                 "}"
+                                 "QPushButton:checked{"
+                                 "background-color: #88AAFF"
+                                 "}"));
+    connect(label, &QPushButton::toggled, this, &TreeItem::selectMe);
+    layout->addWidget(label, 0, 1);
+    this->setLayout(layout);
+}
+
+
+void TreeItem::selectMe()
+{
+    if (label->isChecked())
+    {
+        grandParent->select(this);
+    }
+    else
+    {
+        grandParent->select(nullptr);
+    }
+}
+
+void TreeItem::deselect()
+{
+    label->setChecked(false);
+}
+
+
+void TreeItem::addItem(TreeItem *item, QString position)
+{
+    toggleButton->setDisabled(false);
+    if (position == "-1")
+    {
+        children->append(item);
+        layout->addWidget(item, children->length(), 1);
+        if (toggleButton->arrowType() == Qt::ArrowType::RightArrow)
+        {
+            item->hide();
+        }
+    }
+    else
+    {
+        int pos = position.toInt();
+        if (children->length() == 0)
+        {
+            pos = 0;
+        }
+        while (pos < 0)
+        {
+            pos = children->length() - pos;
+        }
+        while (pos > children->length())
+        {
+            pos -= children->length();
+        }
+        children->insert(pos, item);
+        layout->addWidget(item, pos+1, 1);
+        if (toggleButton->arrowType() == Qt::ArrowType::RightArrow)
+        {
+            item->hide();
+        }
+    }
+}
+
+void TreeItem::toggle()
+{
+    if (toggleButton->arrowType() == Qt::ArrowType::DownArrow)
+    {
+        toggleButton->setArrowType(Qt::ArrowType::RightArrow);
+        for (int i=0; i<children->length(); i++)
+        {
+            children->at(i)->hide();
+        }
+    }
+    else
+    {
+        toggleButton->setArrowType(Qt::ArrowType::DownArrow);
+        for (int i=0; i<children->length(); i++)
+        {
+            children->at(i)->show();
+        }
+    }
+}
